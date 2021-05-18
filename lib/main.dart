@@ -14,19 +14,26 @@ class XylophoneApp extends StatelessWidget {
     Colors.purple
   ];
 
+  final soundArray = ['DO', 'RE', 'MI', 'FA', 'SOL', 'LA', 'SI'];
+
   void playSound(int soundNumber) {
     final player = AudioCache();
     player.play('note$soundNumber.wav');
   }
 
-  void buildKey(int soundNumber) {
+  Expanded buildKey(int soundNumber) {
     return Expanded(
       child: ColoredBox(
-        color: Colors.red,
+        color: colorArray[soundNumber - 1],
         child: TextButton(
           onPressed: () {
             playSound(soundNumber);
           },
+          child: Text(
+            soundArray[soundNumber - 1],
+            textScaleFactor: 3,
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );
